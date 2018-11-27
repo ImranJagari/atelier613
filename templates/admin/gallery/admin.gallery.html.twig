@@ -1,0 +1,63 @@
+{% extends 'admin/admin.base.html.twig' %}
+{% block body %}
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header card-header-tabs card-header-primary">
+                            <div class="nav-tabs-navigation">
+                                <div class="nav-tabs-wrapper">
+                                    <h4 class="card-title">Liste de photos de la galerie</h4>
+                                    <p class="card-category"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="profile">
+                                    <table class="table">
+                                        <tbody>
+                                        {% for gallery in galleries %}
+                                            <tr>
+                                                <td><img style="width: 50px" src="{{ asset(gallery.imgpath) }}" alt=""></td>
+                                                <td>{{ gallery.title }}</td>
+                                                <td class="td-actions text-right">
+                                                    <a href="{{ path("admin-gallery", {id: gallery.id}) }}" rel="tooltip" title="éditer"
+                                                       class="btn btn-white btn-link btn-sm">
+                                                        <i class="material-icons">edit</i>
+                                                    </a>
+                                                    <form action="{{ path("admin-gallery-delete", {id: gallery.id}) }}" method="post"
+                                                          onsubmit="return confirm('êtes vous sûr de vouloir supprimer ?');">
+                                                        <input type="hidden" value="{{ gallery.id }}">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" rel="tooltip" title="supprimer"
+                                                                class="btn btn-white btn-link btn-sm">
+                                                            <i class="material-icons">close</i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{ path("admin-gallery-add") }}" class="btn btn-primary">Ajouter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main class="main-content">
+        <div class="page">
+            <div class="container">
+                <div class="text-center">
+                    <div class="filter-links filterable-nav">
+                        <select class="mobile-filter">
+                            <option value="*">Show all</option>
+                            {% for category in categories %}
+                                <option value=".{{ category }}">{{ category }}</option>
+                            {% endfor %}
+                        </select>
+                        <a href="#" class="current wow fadeInRight" data-filter="*">Show all</a>
+                        {% set cpt = 2 %}
+                        {% for category in categories %}
+                            <a href="#" class="wow fadeInRight" data-wow-delay=".{{ cpt }}s" data-filter=".{{ category }}">{{ category }}</a>
+                            {% set cpt = cpt + 2 %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="filterable-items">
+                    {% for gallery in galleries %}
+                        <div class="gallery-item filterable-item {{ gallery.category }}">
+                            <a href="{{ gallery.imgpath }}">
+                                <figure class="featured-image">
+                                    <img src="{{ gallery.imgpath }}" alt="">
+                                    <figcaption>
+                                        <h2 class="gallery-title">{{ gallery.title }}</h2>
+                                        <p>{{ gallery.desc }}</p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="page addpx">
+        </div>
+    </main>
+
+
+{% endblock %}

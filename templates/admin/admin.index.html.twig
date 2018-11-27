@@ -1,0 +1,112 @@
+{% extends 'admin/admin.base.html.twig' %}
+
+{% block body %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title">Image du salon</h4>
+                                    <p class="card-category"></p>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{{ path("admin-text") }}" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <input type="hidden" id="text_key" name="text[key]" value="saloon">
+                                                        <input type="hidden" id="text_filename" name="text[filename]" value="figure-1.jpg">
+                                                        {% if data[3].french != "" %}
+                                                            <figure><img style="width: 200px" src="{{ asset(data[3].french) }}" alt=""></figure>
+                                                        {% endif %}
+                                                        <input type="file" id="text_saloon" name="text[saloon]">
+                                                        {{ form_widget(form._token) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary pull-right">Mettre à jour</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title">Textes du site</h4>
+                                    <p class="card-category"></p>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{{ path("admin-text") }}" method="post">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Informations</label>
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Informations à propos du salon, qui se retrouvera sous le titre Informations sur la page d'accueil.</label>
+                                                        <input type="hidden" id="text_key" name="text[key]" value="info">
+                                                        <textarea class="form-control" id="text_french" name="text[french]" rows="5">{{ data[0].french }}</textarea>
+                                                        {{ form_widget(form._token) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary pull-right">Mettre à jour</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                    <hr>
+                                    <form action="{{ path("admin-text") }}" method="post">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Prix</label>
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Petit texte informatif sur les prix.</label>
+                                                        <input type="hidden" id="text_key" name="text[key]" value="price">
+                                                        <textarea class="form-control" id="text_french" name="text[french]" rows="5">{{ data[1].french }}</textarea>
+                                                        {{ form_widget(form._token) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary pull-right">Mettre à jour</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                    <hr>
+                                    <form action="{{ path("admin-text") }}" method="post">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Contacts</label>
+                                                    <div class="form-group">
+                                                        <label for="text_french" class="bmd-label-floating">Petit texte informatif dans la page contact.</label>
+                                                        <input type="hidden" id="text_key" name="text[key]" value="contact">
+                                                        <textarea class="form-control" id="text_french" name="text[french]" rows="5">{{ data[2].french }}</textarea>
+                                                        {{ form_widget(form._token) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary pull-right">Mettre à jour</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

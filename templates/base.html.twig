@@ -1,0 +1,99 @@
+{% set current_path = app.request.get('_route') %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+
+    <title>{% block title %}Atelier 613{% endblock %}</title>
+    <!-- Loading third party fonts -->
+    {% block stylesheets %}
+        <link href="{{ asset('fonts/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('fonts/novecento-font/novecento-font.css') }}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
+    {% endblock %}
+    <!-- Loading main css file -->
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+
+
+</head>
+
+        {% block header %}
+            <body>
+
+            <div id="site-content">
+
+                <header class="site-header">
+                    <div class="container">
+                        <a id="branding" href="{{ path("home") }}">
+                            <img src="{{ asset("images/logo.png") }}" alt="Company name" class="logo">
+                            <div class="logo-copy">
+                                <h1 class="site-title">Atelier 613</h1>
+                            </div>
+                        </a> <!-- #branding -->
+
+
+                        <!-- Default snippet for navigation -->
+                        <div class="main-navigation">
+                            <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+                            <ul class="menu">
+                                <li class="menu-item {{ current_path == "home" ? "current-menu-item" : "" }}"><a href="{{ path("home") }}">Home</a></li>
+                                <li class="menu-item {{ current_path == "prices" ? "current-menu-item" : "" }}"><a href="{{ path("prices") }}">Prices</a></li>
+                                <li class="menu-item {{ current_path == "gallery" ? "current-menu-item" : "" }}"><a href="{{ path("gallery") }}">Gallery</a></li>
+                                <li class="menu-item {{ current_path == "contact" ? "current-menu-item" : "" }}"><a href="{{ path("contact") }}">Contact</a></li>
+                                <li class="menu-item {{ current_path == "admin-index" ? "current-menu-item" : "" }}"><a href="{{ path("admin-index") }}">admin</a></li>
+                            </ul> <!-- .menu -->
+                        </div> <!-- .main-navigation -->
+
+                        <div class="mobile-navigation"></div>
+                    </div>
+                </header>
+        {% endblock %}
+        {% block body %}
+
+        {% endblock %}
+                {% block footer %}
+                    <footer class="site-footer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="widget">
+                                        <h3 class="widget-title">Social Media</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident et praesentium </p>
+                                        <div class="social-links">
+                                            <a href="#"><i class="fa fa-facebook"></i></a>
+                                            <a href="#"><i class="fa fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="widget">
+                                        <a href=""><img src="{{ asset("images/cityplug.svg") }}" class="feature-cityplug" alt="cityplug"></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="colophon">
+                                <p>Copyright 2018 Atelier 613. All rights reserved.</p>
+                            </div>
+                        </div>
+                    </footer>
+                {% endblock %}
+            </div>
+
+        {% block javascripts %}
+            <script src="{{ asset("js/ie-support/html5.js") }}"></script>
+            <script src="{{ asset("js/ie-support/respond.js") }}"></script>
+            <script src="{{ asset("js/jquery-1.11.1.min.js") }}"></script>
+            <script src="{{ asset("js/plugins.js") }}"></script>
+            <script src="{{ asset("js/app.js") }}"></script>
+            <script src="{{ asset("js/slick.js") }}"></script>
+        {% endblock %}
+            </body>
+</html>

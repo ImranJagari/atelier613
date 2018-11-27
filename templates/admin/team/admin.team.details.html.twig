@@ -1,0 +1,54 @@
+{% extends 'admin/admin.base.html.twig' %}
+{% block body %}
+    <div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Membre à modifier</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <form action="{{ path("admin-member-modify") }}" method="post"
+                                              enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <input type="hidden" id="team_id" name="team[id]" value="{{ member.id }}">
+
+                                                {% if member.imgpath != "" %}
+                                                    <figure>
+                                                        <img style="width: 200px" src="{{ asset(member.imgpath) }}" alt="">
+                                                    </figure>
+                                                {% endif %}
+                                                <input type="file" id="team_imgpath" name="team[imgpath]" value="{{ member.imgpath }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="team_firstname" class="bmd-label-floating">Prénom</label>
+                                                <input type="text" class="form-control" id="team_firstname"
+                                                          name="team[firstname]" maxlength="40" value="{{ member.firstname }}">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="team_lastname" class="bmd-label-floating">Nom</label>
+                                                <input type="text" class="form-control" id="team_lastname"
+                                                          name="team[lastname]" maxlength="100" value="{{ member.lastname }}">
+                                            </div>
+                                            {{ form_widget(form._token) }}
+                                            <button type="submit" class="btn btn-primary pull-right">Mettre à jour
+                                            </button>
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

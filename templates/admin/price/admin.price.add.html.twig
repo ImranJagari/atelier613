@@ -1,0 +1,51 @@
+{% extends 'admin/admin.base.html.twig' %}
+{% block body %}
+    <div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Prix à ajouter</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <form action="{{ path("admin-price-new") }}" method="post"
+                                              enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label for="price_service" class="bmd-label-floating">Service</label>
+                                                <input type="text" class="form-control" id="price_service"
+                                                       name="price[service]" maxlength="40">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="price_price" class="bmd-label-floating">Prix</label>
+                                                <input type="number" step="0.01" class="form-control" id="price_price"
+                                                       name="price[price]">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="price_sex" class="bmd-label-floating">Catégorie</label>
+                                                <select class="form-control" name="price[sex]" id="price_sex">
+                                                    <option value="0" selected>Enfant</option>
+                                                    <option value="1">Homme</option>
+                                                    <option value="2">Femme</option>
+                                                </select>
+                                            </div>
+                                            {{ form_widget(form._token) }}
+                                            <button type="submit" class="btn btn-primary pull-right">Mettre à jour
+                                            </button>
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

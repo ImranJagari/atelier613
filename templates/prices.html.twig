@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main class="main-content">
+        <div class="page">
+            <div class="container">
+                <p>{{ price }}</p>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="price-list">
+                            <h2 class="section-title accordion">prix pour hommes</h2>
+                            <ul class="prices">
+                                {% for priceDetail in prices %}
+                                    {% if priceDetail.sex == 1 %}
+                                        <li>{{ priceDetail.service }}<span class="price">{{ priceDetail.price }}€</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="price-list">
+                            <h2 class="section-title accordion">prix pour enfants</h2>
+                            <ul class="prices">
+                                {% for priceDetail in prices %}
+                                    {% if priceDetail.sex == 0 %}
+                                        <li>{{ priceDetail.service }}<span class="price">{{ priceDetail.price }}€</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="price-list">
+                            <h2 class="section-title accordion">prix pour femmes</h2>
+                            <ul class="prices">
+                                {% for priceDetail in prices %}
+                                    {% if priceDetail.sex == 2 %}
+                                        <li>{{ priceDetail.service }}<span class="price">{{ priceDetail.price }}€</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget text-center col-md-12">
+                        <h3 class="widget-title">Il n'y a pas de payements par bancontact sur place !</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}
